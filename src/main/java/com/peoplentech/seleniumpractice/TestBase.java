@@ -3,6 +3,7 @@ package com.peoplentech.seleniumpractice;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class TestBase {
 
@@ -18,9 +19,15 @@ public class TestBase {
         driver.findElement(By.xpath(element)).click();
     }
 
-    public static void setupDriver() {
-        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
-        driver = new ChromeDriver();
+    public static void setupDriver(String browserName) {
+        if (browserName.equalsIgnoreCase("firefox")) {
+            System.setProperty("webdriver.gecko.driver", "src/main/resources/geckodriver.exe");
+            driver = new FirefoxDriver();
+        }else {
+            System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
+            driver = new ChromeDriver();
+        }
+
     }
 
     public static void navigateToURL(String url) {
@@ -38,7 +45,8 @@ public class TestBase {
 
     public static void closeDriver() {
 
-        driver.close();
+        //driver.close(); //only to close one tab
+        driver.quit();  //close all tab, close everything
     }
 
 

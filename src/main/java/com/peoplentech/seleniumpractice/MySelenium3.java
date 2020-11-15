@@ -14,7 +14,7 @@ public class MySelenium3 extends TestBase{
     @Test //pick org.testing.annotation
     public static void searchBar(){
 
-        setupDriver(); //this is chromedriver.exe  --> telling which browser to use
+        setupDriver("firefox"); //this is chromedriver.exe  --> telling which browser to use
         navigateToURL("https://www.amazon.com"); //will go to amazon.com website
 
         //search bar --> this is searcing by id, findElement not findElements
@@ -32,7 +32,7 @@ public class MySelenium3 extends TestBase{
     @Test //pick org.testing.annotation
     public static void searchBarThenClickSearch(){
 
-        setupDriver(); //this is chromedriver.exe  --> telling which browser to use
+        setupDriver("firefox"); //this is chromedriver.exe  --> telling which browser to use
         navigateToURL("https://www.ebay.com"); //will go to ebay website
 
 
@@ -57,7 +57,7 @@ public class MySelenium3 extends TestBase{
     @Test
     public static void listOfSearchOptions(){
 
-        setupDriver(); //this is chromedriver.exe  --> telling which browser to use
+        setupDriver("firefox"); //this is chromedriver.exe  --> telling which browser to use
         navigateToURL("http:www.ebay.com"); //will go to ebay website
 
         //this prints all the options from next to search, the Categories. NOTE: findElement
@@ -79,7 +79,7 @@ public class MySelenium3 extends TestBase{
     @Test
     public static void typeOnSearchAndChoose(){
 
-        setupDriver(); //this is chromedriver.exe  --> telling which browser to use
+        setupDriver("firefox"); //this is chromedriver.exe  --> telling which browser to use
         navigateToURL("https://www.ebay.com"); //will go to ebay website
 
         //using id ---> sendkeys is to put "note 20 ultra case" on the search bar
@@ -89,7 +89,7 @@ public class MySelenium3 extends TestBase{
         driver.findElement(By.xpath("//input[@id='gh-btn']")).click();
         sleepFor(2);
 
-        //
+        //this is for line 96, without this line, you can't print "note 20 ultra case, in InteliJ result
         WebElement searchedItem = driver.findElement(By.xpath("//span[text()='note 20 ultra case']"));
 
         //this is to write "note 20 ultra case" in the InteliJ result
@@ -114,12 +114,12 @@ public class MySelenium3 extends TestBase{
 
     @Test
     public static void seleniumMethods() {
-        setupDriver();
+        setupDriver("firefox");
         navigateToURL("https://www.ebay.com");
 
         //this is to go to search box, then line 122 is to click
 
-        //question how does this do to auto parts?
+        //this is to just click on the search button, without anything on the search box
         WebElement clickElement = driver.findElement(By.xpath("//input[@id='gh-btn']"));
         clickElement.click();
         sleepFor(2);
@@ -127,8 +127,7 @@ public class MySelenium3 extends TestBase{
         //line 125 gives same result as line 122. Just writing differently
         //driver.findElement(By.xpath("//input[@id='gh-btn']")).click();
 
-        //this is to go to eBay Motors
-        //how to get this?
+        //this is to go click on eBay Motors
         driver.findElement(By.xpath("//h2[text()='eBay Motors']")).click();
         sleepFor(2);
 
@@ -137,7 +136,7 @@ public class MySelenium3 extends TestBase{
         System.out.println(currentUrl);
 
         //where you get "Auto-Parts-and-Vehicles"
-      //  Assert.assertTrue(currentUrl.contains("Auto-Parts-and-Vehicles"));
+        Assert.assertTrue(currentUrl.contains("Auto-Parts-and-Vehicles"));
 
 
         //if the actual url doesn't match the expected url, the test will fail, here you write what to expect
