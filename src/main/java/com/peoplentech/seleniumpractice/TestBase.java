@@ -1,12 +1,13 @@
 package com.peoplentech.seleniumpractice;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class TestBase {
-
+    private static Logger LOGGER = Logger.getLogger(TestBase.class);
     public static WebDriver driver;
 
     public static void navigateBack() {
@@ -23,9 +24,11 @@ public class TestBase {
         if (browserName.equalsIgnoreCase("firefox")) {
             System.setProperty("webdriver.gecko.driver", "src/main/resources/geckodriver.exe");
             driver = new FirefoxDriver();
+            LOGGER.info("Firefox has been launched");
         }else {
             System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
             driver = new ChromeDriver();
+            LOGGER.info("Chrome has been launched");
         }
 
     }
