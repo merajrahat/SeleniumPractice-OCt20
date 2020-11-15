@@ -1,7 +1,10 @@
 package com.peoplentech.seleniumpractice;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
+
+import java.util.List;
 
 public class MySelenium3 extends TestBase{
 
@@ -29,22 +32,49 @@ public class MySelenium3 extends TestBase{
     public static void searchBarThenClickSearch(){
 
         setupDriver();
-        navigateToURL("https://www.amazon.com");
+        navigateToURL("https://www.ebay.com");
 
 
         //using id ---> sendkeys is to put "note 20 ultra case" on the search bar
-        driver.findElement(By.id("twotabsearchtextbox")).sendKeys("note 20 ultra case");
+        driver.findElement(By.id("gh-ac")).sendKeys("note 20 ultra case");
 
         //Bottom comment is to send using textname,, same result
         // driver.findElement(By.xpath("//input[@id='twotabsearchtextbox']")).sendKeys("note 20 ultra case");
 
         //this is to click search after writing "note 20 ultra case" on the search bar
-        driver.findElement(By.id("twotabsearchtextbox")).click();
+        driver.findElement(By.xpath("//input[@id='gh-btn']")).click();
+
+       //or you can use by just using id below, gives same result
+        //driver.findElement(By.id("gh-btn")).click();
 
         //wait 2 seconds
         sleepFor(2);
         closeDriver();
 
     }
+
+    @Test
+    public static void listOfSearchOptions(){
+
+        setupDriver();
+        navigateToURL("http:www.ebay.com");
+
+        //this prints all the options from next to search, the Categories. NOTE: findElement
+        String printDirectly = driver.findElement(By.xpath("//select[@id='gh-cat']")).getText();
+        System.out.println(printDirectly);
+
+        //this is to count how many options/elements. NOTE: findElements
+        List<WebElement> dropDown = driver.findElements(By.xpath("//select[@id='gh-cat']/option"));
+        System.out.println(dropDown.size());
+
+        //this is to select the 5th option on the categories
+        dropDown.get(5).click();
+
+        sleepFor(2);
+        closeDriver();
+
+    }
+
+
 
 }

@@ -72,6 +72,7 @@ public class Selenium3 extends TestBase {
         //get all the element in the list
         List<WebElement> dropDown = driver.findElements(By.xpath("//select[@id='gh-cat']/option"));
         System.out.println(dropDown.size());
+
         dropDown.get(4).click();
 
         driver.findElement(By.xpath("//input[@id='gh-btn']")).click();

@@ -12,10 +12,16 @@ public class Selenium2 {
 
     private static WebDriver driver;
 
+    //      //for name
+    //      //tagName[text()='______']
     //     //a[text()='Sign in']
     //      //a[text()='register']
-    //      //tagName[text()='______']
     //      (//a[text()='Sign in'])[1]
+
+
+    // for id
+    //input[@id='______']
+    //input[@id='gh-btn']
 
     public static void userShouldBeAbleToClickOnSignInButtonAndRegister() {
         //open the browser
