@@ -13,8 +13,8 @@ public class MySelenium3 extends TestBase{
     @Test //pick org.testing.annotation
     public static void searchBar(){
 
-        setupDriver();
-        navigateToURL("https://www.amazon.com");
+        setupDriver(); //this is chromedriver.exe  --> telling which browser to use
+        navigateToURL("https://www.amazon.com"); //will go to amazon.com website
 
         //search bar --> this is searcing by id, findElement not findElements
         driver.findElement(By.id("twotabsearchtextbox")); //test pass, next put something on search bar
@@ -31,8 +31,8 @@ public class MySelenium3 extends TestBase{
     @Test //pick org.testing.annotation
     public static void searchBarThenClickSearch(){
 
-        setupDriver();
-        navigateToURL("https://www.ebay.com");
+        setupDriver(); //this is chromedriver.exe  --> telling which browser to use
+        navigateToURL("https://www.ebay.com"); //will go to ebay website
 
 
         //using id ---> sendkeys is to put "note 20 ultra case" on the search bar
@@ -56,8 +56,8 @@ public class MySelenium3 extends TestBase{
     @Test
     public static void listOfSearchOptions(){
 
-        setupDriver();
-        navigateToURL("http:www.ebay.com");
+        setupDriver(); //this is chromedriver.exe  --> telling which browser to use
+        navigateToURL("http:www.ebay.com"); //will go to ebay website
 
         //this prints all the options from next to search, the Categories. NOTE: findElement
         String printDirectly = driver.findElement(By.xpath("//select[@id='gh-cat']")).getText();
@@ -68,10 +68,21 @@ public class MySelenium3 extends TestBase{
         System.out.println(dropDown.size());
 
         //this is to select the 5th option on the categories
-        dropDown.get(5).click();
+        dropDown.get(7).click();
 
         sleepFor(2);
         closeDriver();
+
+    }
+
+    @Test
+    public static void typeOnSearchAndChoose(){
+
+        setupDriver(); //this is chromedriver.exe  --> telling which browser to use
+        navigateToURL("https://www.ebay.com"); //will go to ebay website
+
+
+
 
     }
 
