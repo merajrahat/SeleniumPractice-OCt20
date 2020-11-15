@@ -2,6 +2,7 @@ package com.peoplentech.seleniumpractice;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.util.List;
@@ -81,11 +82,71 @@ public class MySelenium3 extends TestBase{
         setupDriver(); //this is chromedriver.exe  --> telling which browser to use
         navigateToURL("https://www.ebay.com"); //will go to ebay website
 
+        //using id ---> sendkeys is to put "note 20 ultra case" on the search bar
+        driver.findElement(By.id("gh-ac")).sendKeys("note 20 ultra case");
+
+        //this is to press search after putting "note 20 ultra case" on the search bar
+        driver.findElement(By.xpath("//input[@id='gh-btn']")).click();
+        sleepFor(2);
+
+        //
+        WebElement searchedItem = driver.findElement(By.xpath("//span[text()='note 20 ultra case']"));
+
+        //this is to write "note 20 ultra case" in the InteliJ result
+        String actualText = searchedItem.getText();
+        System.out.println(actualText);
+
+        //this is to make sure what you type in the search and the result match, if it doesn't the test will fail
+        //this is where you write what to expect
+        Assert.assertEquals(actualText, "note 20 ultra case");
 
 
+        //boolean is to see search item match displayed item
+        boolean validate = searchedItem.isDisplayed();
+
+        //this is to print true or false when the search item and dispalyed item match or not
+        //and it will say true or false on the InteliJ result
+        System.out.println(validate);
+
+        closeDriver();
 
     }
 
+    @Test
+    public static void seleniumMethods() {
+        setupDriver();
+        navigateToURL("https://www.ebay.com");
 
+        //this is to go to search box, then line 122 is to click
+
+        //question how does this do to auto parts?
+        WebElement clickElement = driver.findElement(By.xpath("//input[@id='gh-btn']"));
+        clickElement.click();
+        sleepFor(2);
+
+        //line 125 gives same result as line 122. Just writing differently
+        //driver.findElement(By.xpath("//input[@id='gh-btn']")).click();
+
+        //this is to go to eBay Motors
+        //how to get this?
+        driver.findElement(By.xpath("//h2[text()='eBay Motors']")).click();
+        sleepFor(2);
+
+        //this is you print the url in the InteliJ result
+        String currentUrl = driver.getCurrentUrl();
+        System.out.println(currentUrl);
+
+        //where you get "Auto-Parts-and-Vehicles"
+      //  Assert.assertTrue(currentUrl.contains("Auto-Parts-and-Vehicles"));
+
+
+        //if the actual url doesn't match the expected url, the test will fail, here you write what to expect
+        Assert.assertEquals(currentUrl, "https://www.ebay.com/b/Auto-Parts-and-Vehicles/6000/bn_1865334");
+
+
+        sleepFor(2);
+        closeDriver();
+
+    }
 
 }
