@@ -9,10 +9,12 @@ public class TestBase {
     public static WebDriver driver;
 
     public static void navigateBack() {
+
         driver.navigate().back();
     }
 
     public static void clickOnElement(String element) {
+
         driver.findElement(By.xpath(element)).click();
     }
 
@@ -22,6 +24,7 @@ public class TestBase {
     }
 
     public static void navigateToURL(String url) {
+
         driver.get(url);
     }
 
@@ -34,6 +37,7 @@ public class TestBase {
     }
 
     public static void closeDriver() {
+
         driver.close();
     }
 

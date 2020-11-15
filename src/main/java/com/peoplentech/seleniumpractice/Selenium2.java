@@ -5,58 +5,81 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class Selenium2 {
+
     public static void main(String[] args) {
         userShouldBeAbleToClickOnSignInButtonAndRegister();
     }
+
     private static WebDriver driver;
 
-    public static void userShouldBeAbleToClickOnSignInButtonAndRegister(){
+    //     //a[text()='Sign in']
+    //      //a[text()='register']
+    //      //tagName[text()='______']
+    //      (//a[text()='Sign in'])[1]
+
+    public static void userShouldBeAbleToClickOnSignInButtonAndRegister() {
         //open the browser
         setupDriver();
+
+        //navigate to the url
         navigateToURL("https://www.ebay.com");
+
         //wait 2 seconds
         sleepFor(2);
+
+        //click on sign in
         clickOnElement("(//a[text()='Sign in'])[1]");
 
-        sleepFor(2);
-        navigateBack();
-        sleepFor(2);
-
-        clickOnElement("//a[text()='register']");;
+        //wait 2 seconds
         sleepFor(2);
 
+        //navigate back
         navigateBack();
+
+        //wait 2 seconds
         sleepFor(2);
+
+        //click on register
+        clickOnElement("//a[text()='register']");
+        ;
+
+        //wait two seconds
+        sleepFor(2);
+
+        //close the browser
         closeDriver();
 
     }
 
-    public static void clickOnElement(String element){
+    public static void clickOnElement(String element) {
         driver.findElement(By.xpath(element)).click();
     }
-    public static void navigateBack(){
+
+    public static void navigateBack() {
         driver.navigate().back();
     }
 
-        public static void setupDriver() {
+    public static void setupDriver() {
 
-            System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
-            driver = new ChromeDriver();
-        }
+        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
+        driver = new ChromeDriver();
+    }
 
-       public static void navigateToURL(String url) {
-           driver.get(url);
-       }
-        public static void sleepFor(int seconds) {
-            try {
-                Thread.sleep(seconds*1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+    public static void navigateToURL(String url) {
+        driver.get(url);
+    }
+
+    public static void sleepFor(int seconds) {
+        try {
+            Thread.sleep(seconds * 1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
-        public static void closeDriver() {
-            driver.close();
-        }
+    }
+
+    public static void closeDriver() {
+        driver.close();
+    }
 
 
 }
