@@ -145,7 +145,7 @@ public class MySelenium4 extends TestBase{
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].scrollIntoView(true);", element);
 
-        sleepFor(5);
+        sleepFor(2);
         closeDriver();
     }
 
