@@ -1,5 +1,6 @@
 package com.peoplentech.seleniumpractice;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
@@ -9,6 +10,7 @@ import java.util.List;
 
 public class Selenium3 extends TestBase {
 
+    private static Logger LOGGER = Logger.getLogger(Selenium3.class);
 
     @Test
     public static void validateUserCanTypeOnSearchBar() {
@@ -45,11 +47,11 @@ public class Selenium3 extends TestBase {
 
         //print the data directly
         String data = driver.findElement(By.xpath("//select[@id='gh-cat']")).getText();
-        System.out.println(data);
+        LOGGER.info(data); //same as system printout
 
         //get all the element in the list
         List<WebElement> dropDown = driver.findElements(By.xpath("//select[@id='gh-cat']/option"));
-        System.out.println(dropDown.size());
+        LOGGER.info(dropDown.size());
 
         dropDown.get(5).click();
 
@@ -71,7 +73,7 @@ public class Selenium3 extends TestBase {
 
         //get all the element in the list
         List<WebElement> dropDown = driver.findElements(By.xpath("//select[@id='gh-cat']/option"));
-        System.out.println(dropDown.size());
+        LOGGER.info(dropDown.size());
 
         dropDown.get(4).click();
 
@@ -95,13 +97,13 @@ public class Selenium3 extends TestBase {
 
         WebElement searchedItem = driver.findElement(By.xpath("//span[text()='Java Books']"));
         String actualText = searchedItem.getText();
-        System.out.println(actualText);
+        LOGGER.info(actualText);
 
         Assert.assertEquals(actualText, "Java Books");
 
 
         boolean validation = searchedItem.isDisplayed();
-        System.out.println(validation);
+        LOGGER.info(validation);
 
         closeDriver();
     }
@@ -120,7 +122,7 @@ public class Selenium3 extends TestBase {
         sleepFor(2);
 
         String currentUrl = driver.getCurrentUrl();
-        System.out.println(currentUrl);
+        LOGGER.info(currentUrl);
 
         Assert.assertTrue(currentUrl.contains("Auto-Parts-and-Vehicles"));
 

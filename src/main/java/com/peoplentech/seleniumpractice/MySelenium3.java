@@ -1,5 +1,6 @@
 package com.peoplentech.seleniumpractice;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
@@ -9,7 +10,7 @@ import java.util.List;
 
 public class MySelenium3 extends TestBase{
 
-
+    private static Logger LOGGER = Logger.getLogger(MySelenium3.class);
 
     @Test //pick org.testing.annotation
     public static void searchBar(){
@@ -62,11 +63,11 @@ public class MySelenium3 extends TestBase{
 
         //this prints all the options from next to search, the Categories. NOTE: findElement
         String printDirectly = driver.findElement(By.xpath("//select[@id='gh-cat']")).getText();
-        System.out.println(printDirectly);
+        LOGGER.info(printDirectly);
 
         //this is to count how many options/elements. NOTE: findElements
         List<WebElement> dropDown = driver.findElements(By.xpath("//select[@id='gh-cat']/option"));
-        System.out.println(dropDown.size());
+        LOGGER.info(dropDown.size());
 
         //this is to select the 5th option on the categories
         dropDown.get(7).click();
@@ -94,7 +95,7 @@ public class MySelenium3 extends TestBase{
 
         //this is to write "note 20 ultra case" in the InteliJ result
         String actualText = searchedItem.getText();
-        System.out.println(actualText);
+        LOGGER.info(actualText);
 
         //this is to make sure what you type in the search and the result match, if it doesn't the test will fail
         //this is where you write what to expect
@@ -106,7 +107,7 @@ public class MySelenium3 extends TestBase{
 
         //this is to print true or false when the search item and dispalyed item match or not
         //and it will say true or false on the InteliJ result
-        System.out.println(validate);
+        LOGGER.info(validate);
 
         closeDriver();
 
@@ -133,7 +134,7 @@ public class MySelenium3 extends TestBase{
 
         //this is you print the url in the InteliJ result
         String currentUrl = driver.getCurrentUrl();
-        System.out.println(currentUrl);
+        LOGGER.info(currentUrl);
 
         //where you get "Auto-Parts-and-Vehicles"
         Assert.assertTrue(currentUrl.contains("Auto-Parts-and-Vehicles"));

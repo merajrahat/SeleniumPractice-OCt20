@@ -8,27 +8,35 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.Test;
 
-public class Selenium4 extends TestBase{
+import java.util.List;
 
-    private static Logger LOGGER = Logger.getLogger(Selenium4.class);
+public class MySelenium4 extends TestBase{
+
+    private static Logger LOGGER = Logger.getLogger(MySelenium4.class);
+
 
     @Test
-    public void validateDragAndDrop() {
+    public void validateDragAndDrop(){
         setupDriver("chrome");
         navigateToURL("http://demo.guru99.com/test/drag_drop.html");
         sleepFor(2);
 
-        WebElement source = driver.findElement(By.xpath("(//li[@data-id=\"2\"])[1]"));
+        //this is where you get the element to drag from
+        WebElement source = driver.findElement(By.xpath("( //li[@data-id=\"2\"])[1]"));
+
+        //this is where you get the element to drag to
         WebElement destination = driver.findElement(By.xpath("//ol[@id=\"amt8\"]"));
 
+        //line 27 and 28 is required to perform the drag and drop action
         Actions actions = new Actions(driver);
-        actions.dragAndDrop(source, destination).build().perform();
+        actions.dragAndDrop(source,destination).build().perform();
 
-        sleepFor(5);
+        sleepFor(2);
         closeDriver();
+
     }
 
-    @Test(enabled = false) //(enabled=false) allows to disable this test so when running the class, this test won't run
+    @Test(enabled = false)  //this (enabled = false) is used to disable this @Test so it won't run when running the whole class
     public void validateiFrame() {
         setupDriver("chrome");
         navigateToURL("https://demoqa.com/frames");
@@ -51,20 +59,40 @@ public class Selenium4 extends TestBase{
     }
 
 
-    @Test
-    public void validateDropDown() {
+    @Test //this is another way of DropDown down than Selenium3 class
+    public void validateDropDown(){
         setupDriver("chrome");
-        navigateToURL("https://www.ebay.com");
+        navigateToURL("https://ebay.com");
         sleepFor(2);
 
+        //3 lines of code to pick a category from the "All Categories" list
         WebElement element = driver.findElement(By.id("gh-cat"));
         Select select = new Select(element);
         select.selectByVisibleText("Music");
 
-        sleepFor(5);
+        sleepFor(3);
         closeDriver();
     }
 
+    @Test //this is the other DropDown from Selenium3 class, different code than the one right on top
+    public static void validateProductDropDown() {
+        setupDriver("chrome");
+        navigateToURL("https://www.ebay.com");
+        sleepFor(2);
+
+        // print the data directly
+        String data = driver.findElement(By.xpath("//select[@id='gh-cat']")).getText();
+        LOGGER.info(data);
+
+        //get all the element in the list
+        List<WebElement> dropDown = driver.findElements(By.xpath("//select[@id='gh-cat']/option"));
+        LOGGER.info(dropDown.size());
+
+        dropDown.get(22).click();
+
+        sleepFor(3);
+        closeDriver();
+    }
 
     @Test
     public void validateMouseHover() {
@@ -72,21 +100,23 @@ public class Selenium4 extends TestBase{
         navigateToURL("https://www.ebay.com");
         sleepFor(2);
 
+        //this is to hover over Motor but it won't hover until line 107 and 108
         WebElement motors = driver.findElement(By.linkText("Motors"));
+        //To click on Motor you wite   driver.findElement(By.linkText("Motors")).click();
+
+        //line 107 and 108 is to perform the hover over
         Actions actions = new Actions(driver);
         actions.moveToElement(motors).build().perform();
+
+        //with out line 111, line 114 will fail
         sleepFor(2);
+
+        //this is to print from the Motors options
         driver.findElement(By.linkText("Cars & Trucks")).click();
 
-        sleepFor(5);
+        sleepFor(3);
         closeDriver();
     }
-
-    // class work on firefox
-    // perform mouse hover to sporting goods --> click on golf
-    // navigate back
-    // mouse hover to toys --> click on action figures
-
 
     @Test
     public void validateScroll() {
@@ -94,10 +124,11 @@ public class Selenium4 extends TestBase{
         navigateToURL("https://www.ebay.com");
         sleepFor(2);
 
+        //line 128 and 129 is the code for scroll down
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.scrollBy(0,1000)");
 
-        sleepFor(5);
+        sleepFor(2);
         closeDriver();
     }
 
@@ -107,36 +138,12 @@ public class Selenium4 extends TestBase{
         navigateToURL("https://www.ebay.com");
         sleepFor(2);
 
+        //this is to say which elenment to find, in this case "Announcements"
         WebElement element = driver.findElement(By.linkText("Announcements"));
 
+        //line 145 and 146 is to scroll down to the element "Announcements
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].scrollIntoView(true);", element);
-
-        sleepFor(5);
-        closeDriver();
-    }
-
-
-    @Test
-    public void validatePopup() {
-        setupDriver("chrome");
-        navigateToURL("http://demo.guru99.com/test/delete_customer.php");
-        sleepFor(2);
-
-        driver.findElement(By.xpath("//input[@name=\"cusid\"]")).sendKeys("1");
-        driver.findElement(By.xpath("//input[@name=\"submit\"]")).click();
-
-
-        String popup1 = driver.switchTo().alert().getText();
-        LOGGER.info(popup1);
-
-        driver.switchTo().alert().accept();
-
-        sleepFor(2);
-        String popup2 = driver.switchTo().alert().getText();
-        LOGGER.info(popup2);
-
-        driver.switchTo().alert().accept();
 
         sleepFor(5);
         closeDriver();
