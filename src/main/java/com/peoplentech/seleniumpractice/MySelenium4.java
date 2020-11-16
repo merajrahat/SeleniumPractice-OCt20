@@ -141,7 +141,7 @@ public class MySelenium4 extends TestBase{
         //this is to say which elenment to find, in this case "Announcements"
         WebElement element = driver.findElement(By.linkText("Announcements"));
 
-        //line 145 and 146 is to scroll down to the element "Announcements
+        //line 145 and 146 is to scroll down to the element "Announcements"
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].scrollIntoView(true);", element);
 
