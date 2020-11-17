@@ -59,7 +59,7 @@ public class MySelenium4 extends TestBase{
     }
 
 
-    @Test //this is another way of DropDown down than Selenium3 class
+    @Test //this is another way of doing DropDown than Selenium3 class
     public void validateDropDown(){
         setupDriver("chrome");
         navigateToURL("https://ebay.com");
@@ -117,6 +117,59 @@ public class MySelenium4 extends TestBase{
         sleepFor(3);
         closeDriver();
     }
+    @Test
+    public static void myMacyMouseHover1() {
+
+        setupDriver("chrome");
+        navigateToURL("https://www.macys.com");
+        sleepFor(2);
+
+        WebElement shopByDepartment = driver.findElement(By.linkText("SHOP BY DEPARTMENT"));
+
+        Actions actions = new Actions(driver);
+        actions.moveToElement(shopByDepartment).build().perform();
+
+
+
+        sleepFor(2);
+        closeDriver();
+
+    }
+
+    @Test
+    public static void myMacyMouseHover1part2() {
+
+        setupDriver("chrome");
+        navigateToURL("https://www.macys.com");
+        sleepFor(2);
+
+        driver.findElement(By.id("showByDepartmentCaret"));
+
+        sleepFor(2);
+
+        driver.findElement(By.xpath("//button[@id='showByDepartmentCaret']")).click();
+
+
+        sleepFor(2);
+        closeDriver();
+    }
+
+    @Test
+    public static void myMacyMouseHover2() {
+
+        setupDriver("chrome");
+        navigateToURL("https://www.jcpenney.com/");
+        sleepFor(2);
+
+        WebElement men = driver.findElement(By.linkText("Men"));
+
+
+        Actions actions = new Actions(driver);
+        actions.moveToElement(men).build().perform();
+
+        sleepFor(2);
+
+    }
 
     @Test
     public void validateScroll() {
@@ -131,6 +184,7 @@ public class MySelenium4 extends TestBase{
         sleepFor(2);
         closeDriver();
     }
+
 
     @Test
     public void validateScrollToElement() {
@@ -148,5 +202,6 @@ public class MySelenium4 extends TestBase{
         sleepFor(2);
         closeDriver();
     }
+
 
 }

@@ -8,12 +8,12 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
-public class MySelenium3 extends TestBase{
+public class MySelenium3 extends TestBase {
 
     private static Logger LOGGER = Logger.getLogger(MySelenium3.class);
 
     @Test //pick org.testing.annotation
-    public static void searchBar(){
+    public static void searchBar() {
 
         setupDriver("firefox"); //this is chromedriver.exe  --> telling which browser to use
         navigateToURL("https://www.amazon.com"); //will go to amazon.com website
@@ -31,9 +31,9 @@ public class MySelenium3 extends TestBase{
     }
 
     @Test //pick org.testing.annotation
-    public static void searchBarThenClickSearch(){
+    public static void searchBarThenClickSearch() {
 
-        setupDriver("firefox"); //this is chromedriver.exe  --> telling which browser to use
+        setupDriver("chrome"); //this is chromedriver.exe  --> telling which browser to use
         navigateToURL("https://www.ebay.com"); //will go to ebay website
 
 
@@ -44,9 +44,9 @@ public class MySelenium3 extends TestBase{
         // driver.findElement(By.xpath("//input[@id='twotabsearchtextbox']")).sendKeys("note 20 ultra case");
 
         //this is to click search after writing "note 20 ultra case" on the search bar
-        driver.findElement(By.xpath("//input[@id='gh-btn']")).click();
+        driver.findElement(By.xpath("//input[@id=\"gh-btn\"]")).click();
 
-       //or you can use by just using id below, gives same result
+        //or you can use by just using id below, gives same result
         //driver.findElement(By.id("gh-btn")).click();
 
         //wait 2 seconds
@@ -56,7 +56,7 @@ public class MySelenium3 extends TestBase{
     }
 
     @Test
-    public static void listOfSearchOptions(){
+    public static void listOfSearchOptions() {
 
         setupDriver("firefox"); //this is chromedriver.exe  --> telling which browser to use
         navigateToURL("http:www.ebay.com"); //will go to ebay website
@@ -78,9 +78,9 @@ public class MySelenium3 extends TestBase{
     }
 
     @Test
-    public static void typeOnSearchAndChoose(){
+    public static void typeOnSearchAndChoose() {
 
-        setupDriver("firefox"); //this is chromedriver.exe  --> telling which browser to use
+        setupDriver("chrome"); //this is chromedriver.exe  --> telling which browser to use
         navigateToURL("https://www.ebay.com"); //will go to ebay website
 
         //using id ---> sendkeys is to put "note 20 ultra case" on the search bar
@@ -149,4 +149,21 @@ public class MySelenium3 extends TestBase{
 
     }
 
+    @Test
+    public static void myMacysSearchMenShoes() {
+
+        setupDriver("chrome");
+        navigateToURL("https://macys.com");
+        sleepFor(2);
+
+        driver.findElement(By.id("globalSearchInputField")).sendKeys("men shoes");
+
+        sleepFor(2);
+
+        driver.findElement(By.xpath("//button[@id='searchSubmit']")).click();
+
+
+        sleepFor(2);
+        closeDriver();
+    }
 }
