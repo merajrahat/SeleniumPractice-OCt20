@@ -86,7 +86,7 @@ public class Selenium3 extends TestBase {
 
     @Test
     public static void validateUserCanTypeOnSearchBarAndChooseFromDropDown() {
-        setupDriver("firefox");
+        setupDriver("chrome");
         navigateToURL("https://www.ebay.com");
 
 

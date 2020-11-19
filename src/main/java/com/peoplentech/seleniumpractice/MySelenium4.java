@@ -143,16 +143,16 @@ public class MySelenium4 extends TestBase{
         navigateToURL("https://www.macys.com");
         sleepFor(2);
 
-       // driver.findElement(By.id("showByDepartmentCaret"));
-       // driver.findElement(By.id("shopByDepartmentLabelText"));
+      // driver.findElement(By.id("showByDepartmentCaret"));
+       driver.findElement(By.id("shopByDepartmentLabelText"));
 
-        driver.findElement(By.id("shopByDepartmentDropdownList"));
+       // driver.findElement(By.id("shopByDepartmentDropdownList"));
 
         sleepFor(2);
 
-       // driver.findElement(By.xpath("//button[@id='showByDepartmentCaret']")).click();
+      // driver.findElement(By.xpath("//button[@id='showByDepartmentCaret']")).click();
 
-      //  driver.findElement(By.xpath("//span[@id=\"shopByDepartmentLabelText\"]")).click();
+       driver.findElement(By.xpath("//span[@id=\"shopByDepartmentLabelText\"]")).click();
 
        // driver.findElement(By.xpath("//div[@id=\"shopByDepartmentDropdownList\"]")).click();
 
