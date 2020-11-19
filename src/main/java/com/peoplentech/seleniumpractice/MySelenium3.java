@@ -65,10 +65,7 @@ public class MySelenium3 extends TestBase {
         //using id ---> sendkeys is to put "note 20 ultra case" on the search bar
         driver.findElement(By.id("gh-ac")).sendKeys("note 20 ultra case");
 
-        //Bottom comment is to send using textname,, same result
-        // driver.findElement(By.xpath("//input[@id='twotabsearchtextbox']")).sendKeys("note 20 ultra case");
-
-        //this is to click search after writing "note 20 ultra case" on the search bar
+       //this is to click search after writing "note 20 ultra case" on the search bar
         driver.findElement(By.xpath("//input[@id='gh-btn']")).click();
 
         //or you can click by just using id below, gives same result
