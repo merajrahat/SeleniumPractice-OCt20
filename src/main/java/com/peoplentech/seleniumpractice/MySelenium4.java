@@ -8,6 +8,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.Test;
 
+import java.sql.Driver;
 import java.util.List;
 
 public class MySelenium4 extends TestBase{
@@ -139,20 +140,22 @@ public class MySelenium4 extends TestBase{
     @Test
     public static void myMacyMouseHover1part2() {
 
-        setupDriver("chrome");
+        setupDriver("firefox");
         navigateToURL("https://www.macys.com");
         sleepFor(2);
 
+        driver.manage().window().maximize();
+
       // driver.findElement(By.id("showByDepartmentCaret"));
-       driver.findElement(By.id("shopByDepartmentLabelText"));
+       //driver.findElement(By.id("shopByDepartmentLabelText"));
 
        // driver.findElement(By.id("shopByDepartmentDropdownList"));
 
         sleepFor(2);
 
-      // driver.findElement(By.xpath("//button[@id='showByDepartmentCaret']")).click();
+      driver.findElement(By.xpath("//button[@id='showByDepartmentCaret']")).click();
 
-       driver.findElement(By.xpath("//span[@id=\"shopByDepartmentLabelText\"]")).click();
+      // driver.findElement(By.xpath("//span[@id='shopByDepartmentLabelText']")).click();
 
        // driver.findElement(By.xpath("//div[@id=\"shopByDepartmentDropdownList\"]")).click();
 
@@ -169,14 +172,17 @@ public class MySelenium4 extends TestBase{
         setupDriver("chrome");
         navigateToURL("https://www.jcpenney.com/");
         sleepFor(2);
+        driver.manage().window().maximize();
+        sleepFor(2);
+
 
         WebElement men = driver.findElement(By.linkText("Men"));
-
 
         Actions actions = new Actions(driver);
         actions.moveToElement(men).build().perform();
 
         sleepFor(2);
+        closeDriver();
 
     }
 
@@ -189,6 +195,11 @@ public class MySelenium4 extends TestBase{
         //line 128 and 129 is the code for scroll down
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.scrollBy(0,1000)");
+
+        sleepFor(2);
+
+        //this is to scroll back up
+        js.executeScript("window.scrollBy(0,-1000)");
 
         sleepFor(2);
         closeDriver();
