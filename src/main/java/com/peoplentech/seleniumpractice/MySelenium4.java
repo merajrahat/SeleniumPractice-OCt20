@@ -23,7 +23,7 @@ public class MySelenium4 extends TestBase{
         sleepFor(2);
 
         //this is where you get the element to drag from
-        WebElement source = driver.findElement(By.xpath("( //li[@data-id=\"2\"])[1]"));
+        WebElement source = driver.findElement(By.xpath("(//li[@data-id=\"2\"])[1]"));
 
         //this is where you get the element to drag to
         WebElement destination = driver.findElement(By.xpath("//ol[@id=\"amt8\"]"));
@@ -140,24 +140,26 @@ public class MySelenium4 extends TestBase{
     @Test
     public static void myMacyMouseHover1part2() {
 
-        setupDriver("firefox");
+        setupDriver("chrome");
         navigateToURL("https://www.macys.com");
         sleepFor(2);
 
         driver.manage().window().maximize();
 
-      // driver.findElement(By.id("showByDepartmentCaret"));
+      //driver.findElement(By.id("showByDepartmentCaret"));
        //driver.findElement(By.id("shopByDepartmentLabelText"));
 
        // driver.findElement(By.id("shopByDepartmentDropdownList"));
 
         sleepFor(2);
 
-      driver.findElement(By.xpath("//button[@id='showByDepartmentCaret']")).click();
+     // driver.findElement(By.xpath("//button[@id='showByDepartmentCaret']")).click();
 
-      // driver.findElement(By.xpath("//span[@id='shopByDepartmentLabelText']")).click();
+      driver.findElement(By.id("shopByDepartmentLabelText")).click();
 
-       // driver.findElement(By.xpath("//div[@id=\"shopByDepartmentDropdownList\"]")).click();
+       //driver.findElement(By.xpath("//span[@id='shopByDepartmentLabelText']")).click();
+
+        //driver.findElement(By.xpath("//div[@id=\"shopByDepartmentDropdownList\"]")).click();
 
 
         // driver.findElement(By.id("shopByDepartmentDropdownList")).click();
@@ -200,6 +202,16 @@ public class MySelenium4 extends TestBase{
 
         //this is to scroll back up
         js.executeScript("window.scrollBy(0,-1000)");
+
+        sleepFor(2);
+
+        //scroll to the bottom of a page
+        js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+
+        sleepFor(2);
+
+        //scroll to the top of a page
+        js.executeScript("window.scrollTo(0, -document.body.scrollHeight)");
 
         sleepFor(2);
         closeDriver();

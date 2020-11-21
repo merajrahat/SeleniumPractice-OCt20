@@ -47,7 +47,7 @@ public class MySelenium3 extends TestBase {
         driver.findElement(By.xpath("//input[@id=\"gh-btn\"]")).click();
 
         //or you can use by just using id below, gives same result
-        //driver.findElement(By.id("gh-btn")).click();
+        driver.findElement(By.id("gh-btn")).click();
 
         //wait 2 seconds
         sleepFor(2);
@@ -143,7 +143,7 @@ public class MySelenium3 extends TestBase {
         //this is to go to search box, then line 122 is to click
 
         //this is to just click on the search button, without anything on the search box
-        WebElement clickElement = driver.findElement(By.xpath("//input[@id='gh-btn']"));
+        WebElement clickElement = driver.findElement(By.xpath("//input[@id=\"gh-bt\"]"));
         clickElement.click();
         sleepFor(2);
 
