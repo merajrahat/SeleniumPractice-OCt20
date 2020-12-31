@@ -234,6 +234,23 @@ public class MySelenium4 extends TestBase{
         sleepFor(2);
         closeDriver();
     }
+    @Test
+    public static void mySlickDeals() {
 
+        setupDriver("chrome");
+        navigateToURL("https://www.slickdeals.net");
+        sleepFor(2);
+
+        WebElement shopByDepartment = driver.findElement(By.linkText("Deals"));
+
+        Actions actions = new Actions(driver);
+        actions.moveToElement(shopByDepartment).build().perform();
+
+
+
+        sleepFor(2);
+        closeDriver();
+
+    }
 
 }
